@@ -13,7 +13,7 @@ describe('search text', () => {
 
         homePage.searchButton()
 
-        cy.get('.searchresults').contains('cypress')
+        homePage.searchResults().contains('cypress')
     
         // cy.contains("cypress")
     

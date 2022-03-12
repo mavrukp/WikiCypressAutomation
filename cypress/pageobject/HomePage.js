@@ -22,4 +22,8 @@ export class HomePage{
         cy.get('[aria-controls="mw-advancedSearch-expandable-namespaces"] > .oo-ui-indicator-down').click()
     }
 
+    searchResults(){  
+        return cy.get('.searchresults')      
+    }
+
 }

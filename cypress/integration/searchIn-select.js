@@ -1,79 +1,64 @@
 /// <reference types="cypress" />
 
 import { HomePage } from "../pageobject/HomePage"
+import { SearchInPage } from "../pageobject/SearchInPage"
 
 describe('searchin selection test', () => {
     const homePage = new HomePage()
+    const searchInPage = new SearchInPage()
     before(()=>{
        homePage.navigate()
     })
     
-    it('should searchin dropdown open', ()=>{
+    it('should searchin dropdown is opened', ()=>{
 
-       homePage.serachInDropdown()
+      homePage.serachInDropdown()
 
-       cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]').should('be.checked')
+      searchInPage.searchInCheckbox().should('be.checked')
 
-       cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-       .uncheck('defaultNamespaces').should('not.be.checked')
+      searchInPage.searchInCheckbox().uncheck('defaultNamespaces').should('not.be.checked')
     })
 
-    it('should check the "All" checkbox', ()=>{
+    it('should each checkbox be checked in order', ()=>{
  
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .check('defaultNamespaces')
-        .should('be.checked')
+      searchInPage.searchInCheckbox().check('defaultNamespaces').should('be.checked')
  
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .check('discussion').should('be.checked')
+      searchInPage.searchInCheckbox().check('discussion').should('be.checked')
 
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .check('generalHelp').should('be.checked')
+      searchInPage.searchInCheckbox().check('generalHelp').should('be.checked')
 
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .check('all').should('be.checked')
+      searchInPage.searchInCheckbox().check('all').should('be.checked')
      })
 
      it('should the "All" checkbox is unchecked when any other checkbox is unchecked', ()=>{
  
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .uncheck('defaultNamespaces')
-        .should('not.be.checked')
+      searchInPage.searchInCheckbox().uncheck('defaultNamespaces').should('not.be.checked')
 
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]').get(3)
-        .should('not.be.checked')
+      searchInPage.searchInCheckbox().get(3).should('not.be.checked')
 
      })
 
-     it('should selected count be 28 when all checkbox checked', ()=>{
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .check('all').should('be.checked')
-        cy.get('.mw-advancedSearch-namespaceFilter > .oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > .oo-ui-tagMultiselectWidget-group').children().should('have.length', 28)
+     it('should selected search category count be 28 when the All checkbox is checked', ()=>{
+      searchInPage.searchInCheckbox().check('all').should('be.checked')
+      searchInPage.searchInSelectedList().children().should('have.length', 28)
      })
 
-     it('should selected count be 0 when all checkbox unchecked', ()=>{
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .uncheck('all').should('not.be.checked')
-        cy.get('.mw-advancedSearch-namespaceFilter > .oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > .oo-ui-tagMultiselectWidget-group').children().should('have.length', 0)
+     it('should selected search category count be 0 when the All checkbox is unchecked', ()=>{
+      searchInPage.searchInCheckbox().uncheck('all').should('not.be.checked')
+      searchInPage.searchInSelectedList().children().should('have.length', 0)
      })
 
-     it('should selected count be 0 when each checkbox is unchecked in order', ()=>{
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .check('all').should('be.checked')
+     it('should selected search category count be 0 when each checkbox is unchecked in order', ()=>{
+      searchInPage.searchInCheckbox().check('all').should('be.checked')
 
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .uncheck('defaultNamespaces')
-        .should('not.be.checked')
+      searchInPage.searchInCheckbox().uncheck('defaultNamespaces').should('not.be.checked')
  
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .uncheck('discussion').should('not.be.checked')
+      searchInPage.searchInCheckbox().uncheck('discussion').should('not.be.checked')
 
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .uncheck('generalHelp').should('not.be.checked')
+      searchInPage.searchInCheckbox().uncheck('generalHelp').should('not.be.checked')
 
-        cy.get('.oo-ui-multiselectWidget-group [type="checkbox"]')
-        .uncheck('all').should('not.be.checked')
-        cy.get('.mw-advancedSearch-namespaceFilter > .oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > .oo-ui-tagMultiselectWidget-group').children().should('have.length', 0)
+      searchInPage.searchInCheckbox().uncheck('all').should('not.be.checked')
+      searchInPage.searchInSelectedList().children().should('have.length', 0)
      })
     
     
