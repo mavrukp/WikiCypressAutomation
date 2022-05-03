@@ -26,4 +26,8 @@ export class HomePage{
         return cy.get('.searchresults')      
     }
 
+    loginLink(){  
+        return cy.get('#pt-login')      
+    }
+
 }

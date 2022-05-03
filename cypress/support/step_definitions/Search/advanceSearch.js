@@ -5,8 +5,11 @@ import { AdvanceSearchPage } from "../../../pageobject/AdvanceSearchPage"
 const homePage = new HomePage()
 const advanceSearchPage = new AdvanceSearchPage() 
 
-Given(`I navigate to home page and dropdown the Advance Search`, () => {
+Given(`I navigate to home page`, () => {
     homePage.navigate()
+});
+
+Given(`I dropdown the Advance Search`, () => {
     homePage.advanceSeachDropDown() 
 });
 
