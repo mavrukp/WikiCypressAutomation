@@ -19,7 +19,7 @@ export class AdvanceSearchPage{
     }
 
     advanceSearchWidthHeightWarning(){
-        return cy.get('.mw-message-box.mw-message-box-warning.warningbox')
+        return cy.get('.mw-message-box-warning')
     }
 
     advanceSearchSelectSortingOrder(text){
@@ -33,14 +33,33 @@ export class AdvanceSearchPage{
         return cy.get('.mw-advancedSearch-searchPreview')
     }
 
-    advanceSearchInfoIcon(){
-        //return cy.get(':nth-child(1) > .oo-ui-fieldsetLayout-group > :nth-child(1) > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-help > .oo-ui-buttonElement-button > .oo-ui-iconElement-icon')
-        return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button')
+    advanceSearchInfoIcon(text){
+   
+        if (text === 'These Words') 
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(0)               
+        if (text === 'Exactly this text')  
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(1)         
+        if (text === 'Not these words' )  
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(2)          
+        if (text === 'One of these words') 
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(3)         
+        if (text === 'Page title contains')  
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(4)       
+        if (text === 'Subpages of this page')
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(5)       
+        if (text === 'Pages in these categories')
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(6)   
+        if (text === 'Pages with these templates')
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(7)  
+        if (text === 'File type')   
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(8)                
+        if (text === 'Sorting order')  
+            return cy.get('.oo-ui-fieldLayout-help .oo-ui-buttonElement-button').eq(11)             
+        
     }
 
     advanceSearchInfoIconPopUp(){    
-        return cy.get('.oo-ui-popupWidget-anchored-top > .oo-ui-popupWidget-popup')
-        //cy.get('[style="top: 341.922px; left: 306px;"] > .oo-ui-popupWidget-popup')
+        return cy.get('.oo-ui-popupWidget-popup')
     }
 
 
