@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "cypress": "cypress open",
-    "test": "cypress run --browser chrome --spec \"**/*.feature\"",
+    "test": "cypress run --spec \"**/*.feature\"",
+    "pinartest": "cypress run --browser chrome --env TAGS='@tag2' --spec \"**/*.feature\"",
     "pinar": "cypress run --spec ./cypress/integration/*.js"
   },
   "keywords": [
